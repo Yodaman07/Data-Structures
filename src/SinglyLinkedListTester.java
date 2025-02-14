@@ -7,8 +7,8 @@ class SinglyLinkedListTester {
 	@Test
 	void testOneElement() {
 		
-		SinglyLinkedList list = new SinglyLinkedList();
-		
+//		SinglyLinkedList list = new SinglyLinkedList();
+		DoublyLinkedList list = new DoublyLinkedList();
 		//add one Node then check size
 		list.add(new Node(7));
 		assertTrue(list.size() == 1);//size should be 1 now
@@ -21,7 +21,8 @@ class SinglyLinkedListTester {
 	
 	@Test
 	void testMultipleElements() {
-		SinglyLinkedList list = new SinglyLinkedList();
+//		SinglyLinkedList list = new SinglyLinkedList();
+		DoublyLinkedList list = new DoublyLinkedList();
 		
 		list.add(new Node(7));
 		list.add(new Node(21));
@@ -54,10 +55,18 @@ class SinglyLinkedListTester {
 	
 	@Test
 	void testRemoving() {
-		SinglyLinkedList list = new SinglyLinkedList();
+//		SinglyLinkedList list = new SinglyLinkedList();
+		DoublyLinkedList list = new DoublyLinkedList();
 		list.add(new Node(7));
 		list.add(new Node(21));
 		list.add(new Node(14));
+		
+		//Doubly Linked List Testing
+  		assertTrue(list.get(0).prev == null);
+  		assertTrue(list.get(1).prev.getData().equals(7));
+  		assertTrue(list.get(2).prev.getData().equals(21));
+
+		 
 		
 		
 		assertTrue(list.get(0).getData().equals(7));
@@ -99,20 +108,24 @@ class SinglyLinkedListTester {
 	
 	@Test
 	void testInsert() {
-		SinglyLinkedList list = new SinglyLinkedList();
+//		SinglyLinkedList list = new SinglyLinkedList();
+		DoublyLinkedList list = new DoublyLinkedList();
 		list.add(new Node(7));
 		list.add(new Node(21));
 		list.add(new Node(14));
 		
 		assertTrue(list.toString().equals("[7, 21, 14]"));
 
-		list.insert(2, new Node(3));//inserting in the middle
+		list.add(2, new Node(3));//inserting in the middle
 		assertTrue(list.toString().equals("[7, 21, 3, 14]"));
 		
-		list.insert(0, new Node(10));//inserting on the left
+  		assertTrue(list.get(2).prev.getData().equals(21));
+		
+		
+		list.add(0, new Node(10));//inserting on the left
 		assertTrue(list.toString().equals("[10, 7, 21, 3, 14]"));
 		
-		list.insert(5, new Node(39));//inserting on the right
+		list.add(5, new Node(39));//inserting on the right
 		assertTrue(list.toString().equals("[10, 7, 21, 3, 14, 39]"));
 
 		
