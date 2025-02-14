@@ -4,6 +4,7 @@ public class DoublyLinkedList {
 	
 	//reference to the "start" of the list
 	Node head; 			//null or references first node
+	Node tail;// null or references last node
 	private int size; 	// # of Node objects
 	
 	public DoublyLinkedList() {
@@ -48,7 +49,7 @@ public class DoublyLinkedList {
 		//are there existing nodes?
 		//what do you have to do to the head reference
 		//so it's valid?
-		if (head == null) {head = newNode;}
+		if (head == null) {head = newNode; tail = newNode;}
 		else {
 			this.add(head, newNode); //call the private helper method if needed (recursive)
 		}
@@ -64,6 +65,7 @@ public class DoublyLinkedList {
 		
 		//base-case
 		if (curr.next == null) { //found the end of the list - the next ref is NULLLL
+			tail = newNode;
 			curr.next = newNode; //add the new node and exit the recursion :)
 			newNode.prev = curr;
 		}else {
@@ -110,7 +112,7 @@ public class DoublyLinkedList {
 			//reorder elements
 			if (index == 0 && size == 1) {head = null;} //if you are removing the only element
 			
-			else if (index == this.size()-1) {this.get(index-1).next = null;} //if the element is on the right most side
+			else if (index == this.size()-1) {this.get(index-1).next = null; this.tail = this.get(index-1);} //if the element is on the right most side
 			else if (index == 0) {head = this.get(1); head.prev = null;} // if the element is on the left most side
 			else {
 				Node n = this.get(index+1);

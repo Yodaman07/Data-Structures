@@ -28,6 +28,8 @@ class SinglyLinkedListTester {
 		list.add(new Node(21));
 		list.add(new Node(14));
 		
+		assertTrue(list.tail.getData().equals(14));
+		
 		
 		assertTrue(list.toString().equals("[7, 21, 14]"));
 		
@@ -76,6 +78,12 @@ class SinglyLinkedListTester {
 		
 		assertTrue(list.remove(0).getData().equals(7)); //removing the first element
 		assertTrue(list.get(0).getData().equals(21));
+		assertTrue(list.tail.getData().equals(14));
+		
+		//Doubly Linked List Testing
+  		assertTrue(list.get(0).prev == null);
+  		
+		
 		assertTrue(list.get(1).getData().equals(14));
 		assertTrue(list.toString().equals("[21, 14]"));
 		
@@ -89,6 +97,8 @@ class SinglyLinkedListTester {
 		assertTrue(list.get(0).getData().equals(21));
 		assertTrue(list.toString().equals("[21]"));
 		
+		assertTrue(list.tail.getData().equals(21));
+		
 		
 		assertTrue(list.remove(0).getData().equals(21)); 
 		assertTrue(list.get(0) == null);
@@ -99,9 +109,14 @@ class SinglyLinkedListTester {
 		list.add(new Node(3));
 		assertTrue(list.toString().equals("[1, 2, 3]"));
 		
+		
+		assertTrue(list.get(1).prev.getData().equals(1));
 		assertTrue(list.remove(1).getData().equals(2)); //removing middle element
+		assertTrue(list.get(1).prev.getData().equals(1));
+		
 		assertTrue(list.size() == 2);
 		assertTrue(list.toString().equals("[1, 3]"));
+		assertTrue(list.tail.getData().equals(3));
 	}
 	
 	
@@ -119,14 +134,23 @@ class SinglyLinkedListTester {
 		list.add(2, new Node(3));//inserting in the middle
 		assertTrue(list.toString().equals("[7, 21, 3, 14]"));
 		
+		//Doubly Linked List Testing
+  		assertTrue(list.get(0).prev == null);
+  		assertTrue(list.get(1).prev.getData().equals(7));
+  		assertTrue(list.get(2).prev.getData().equals(21));
+  		assertTrue(list.get(3).prev.getData().equals(3));
+		
+		
   		assertTrue(list.get(2).prev.getData().equals(21));
 		
 		
 		list.add(0, new Node(10));//inserting on the left
 		assertTrue(list.toString().equals("[10, 7, 21, 3, 14]"));
+		assertTrue(list.tail.getData().equals(14));
 		
 		list.add(5, new Node(39));//inserting on the right
 		assertTrue(list.toString().equals("[10, 7, 21, 3, 14, 39]"));
+		assertTrue(list.tail.getData().equals(39));
 
 		
 	}
